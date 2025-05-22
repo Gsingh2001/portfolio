@@ -1,56 +1,154 @@
+// components/IntroSection.jsx
 import Image from 'next/image';
 import Link from 'next/link';
+import Marquee from 'react-fast-marquee';
+import {
+  FaPhone,
+  FaEnvelope,
+  FaGithub,
+  FaLinkedin,
+  FaFilePdf,
+} from 'react-icons/fa';
+import {
+  SiReact,
+  SiNextdotjs,
+  SiJavascript,
+  SiTailwindcss,
+  SiBootstrap,
+  SiMaterialui,
+  SiHtml5,
+  SiCss3,
+  SiSass,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiMysql,
+  SiFirebase,
+  SiGit,
+  SiGithub,
+  SiVercel,
+  SiDocker,
+  SiJira,
+  SiSlack,
+} from 'react-icons/si';
+
+const SKILL_ICONS = [
+  SiReact,
+  SiNextdotjs,
+  SiJavascript,
+  SiTailwindcss,
+  SiBootstrap,
+  SiMaterialui,
+  SiHtml5,
+  SiCss3,
+  SiSass,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiMysql,
+  SiFirebase,
+  SiGit,
+  SiGithub,
+  SiVercel,
+  SiDocker,
+  SiJira,
+  SiSlack,
+].filter(Boolean);
 
 const IntroSection = ({ currentTheme }) => {
+  const iconColor = currentTheme.colors.icon || currentTheme.colors.text;
+  const fgColor = currentTheme.colors.text;
+  const accent = currentTheme.colors.accent;
 
   return (
     <section
-      className="flex items-center justify-center h-screen transition-all duration-500 ease-in-out"
-      style={{ backgroundColor: currentTheme.colors.background || '#fff' }}
-      aria-label="Introduction to 24XDEV Web Solutions"
+  className="relative flex items-center justify-center bg-cover min-h-[90vh]"
+      style={{ backgroundColor: currentTheme.colors.background }}
+      aria-label="Introduction section"
       role="banner"
     >
-      <div className="container mx-auto flex flex-col md:flex-row items-center px-16">
-
-        <div
-          className="md:w-1/2 text-center md:text-left order-last md:order-first mb-8"
-        >
+      <div className="w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-8 md:gap-0">
+        {/* Text Column */}
+        <div className="w-full md:w-1/2 flex flex-col items-center md:items-start justify-center md:pr-10">
           <h1
-            className={`text-4xl md:text-5xl font-bold mb-4`}
-            style={{ color: currentTheme.colors.text || '#000' }}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-center md:text-left"
+            style={{ color: fgColor }}
           >
-            Welcome to <span style={{ color: currentTheme.colors.accent || '#FF0000' }}>24XDEV</span> - Your Trusted Partner in Web Solutions
+            Hello, I’m <span style={{ color: accent }}>Gurmanpreet</span>
             <br />
-            Elevate Your <span style={{ color: currentTheme.colors.accent || '#FF0000' }}>Digital Presence</span>
+            <span className="block">A Full-Stack Developer</span>
           </h1>
-          <p
-            className="text-lg mb-6"
-            style={{ color: currentTheme.colors.text || '#000' }}
-          >
-            At 24XDEV, we provide tailored web solutions that encompass development, design, hosting, deployment, and maintenance—empowering your digital excellence.
+          <p className="text-base sm:text-lg mb-6 text-center md:text-left" style={{ color: fgColor }}>
+            I build scalable web applications and dynamic user interfaces using React, Next.js, Node.js, and more.
           </p>
-          <div>
-            <Link
-              href="/gettingstarted"
-              className="bg-blue-500 text-white py-3 px-8 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
-              aria-label="Get started with 24XDEV's web solutions"
-            >
-              Get Started with 24XDEV
+
+          {/* Contact Icons */}
+          <div className="flex flex-wrap justify-center md:justify-start items-center gap-3 mb-4">
+            <Link href="tel:+447553189857" aria-label="Call me">
+              <FaPhone
+                className="text-2xl transition-colors duration-300 hover:text-accent"
+                style={{ color: iconColor }}
+              />
             </Link>
+            <Link href="mailto:gsingh07@outlook.in" aria-label="Email me">
+              <FaEnvelope
+                className="text-2xl transition-colors duration-300 hover:text-accent"
+                style={{ color: iconColor }}
+              />
+            </Link>
+            <Link href="https://github.com/gsingh2001" target="_blank" rel="noopener noreferrer" aria-label="View my GitHub">
+              <FaGithub
+                className="text-2xl transition-colors duration-300 hover:text-accent"
+                style={{ color: iconColor }}
+              />
+            </Link>
+            <Link href="https://linkedin.com/in/gsingh07" target="_blank" rel="noopener noreferrer" aria-label="View my LinkedIn">
+              <FaLinkedin
+                className="text-2xl transition-colors duration-300 hover:text-accent"
+                style={{ color: iconColor }}
+              />
+            </Link>
+            <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download my resume">
+              <FaFilePdf
+                className="text-2xl transition-colors duration-300 hover:text-accent"
+                style={{ color: iconColor }}
+              />
+            </Link>
+          </div>
+
+          {/* Skill Icons Marquee */}
+          <div className="w-full mt-3">
+            <Marquee
+              gradient={false}
+              speed={40}
+              pauseOnHover
+              className="py-2 mt-5"
+            >
+              {SKILL_ICONS.map((Icon, i) => (
+                <Icon
+                  key={i}
+                  size={32}
+                  color={iconColor}
+                  className="mx-4"
+                />
+              ))}
+            </Marquee>
           </div>
         </div>
 
-        <div
-          className="md:w-1/2 order-first md:order-last flex justify-center transition-transform duration-500"
-        >
-          <Image
-            src="/img/intro-img.svg"
-            alt="Illustration showcasing comprehensive web solutions provided by 24XDEV"
-            className="w-full h-auto max-w-md transition-transform duration-500 transform hover:scale-105"
-            loading="lazy"
-            width={100}
-            height={100}
-          />
+        {/* Image Column */}
+        <div className="w-full md:w-1/2 flex justify-center items-center mb-8 md:mb-0">
+          <div className="w-60 h-60 sm:w-80 sm:h-80 md:w-[480px] md:h-[480px] flex items-center justify-center rounded-2xl overflow-hidden shadow-lg bg-white/5">
+            <Image
+              src="/img/IMG-20250520-WA0020~2.jpg"
+              alt="Gurmanpreet coding illustration"
+              className="w-full h-full object-cover"
+              loading="lazy"
+              width={480}
+              height={480}
+              priority={false}
+            />
+          </div>
         </div>
       </div>
     </section>
