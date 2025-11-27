@@ -75,12 +75,12 @@ const NavBar = () => {
                 Home
               </Link>
               <Link
-                href="/portfolio"
+                href="/projects"
                 className={`px-4 py-2 rounded-lg transition ${
-                  isActive("/portfolio") ? "bg-blue-700 text-white" : isDarkMode ? "text-white" : "text-black"
+                  isActive("/projects") ? "bg-blue-700 text-white" : isDarkMode ? "text-white" : "text-black"
                 }`}
               >
-                Portfolio
+                projects
               </Link>
               <a
                 href="/resume.pdf"
@@ -147,13 +147,13 @@ const NavBar = () => {
             Home
           </Link>
           <Link
-            href="/portfolio"
+            href="/projects"
             className={`block px-4 py-2 rounded-lg transition ${
-              isActive("/portfolio") ? "bg-blue-700 text-white" : isDarkMode ? "text-white" : "text-black"
+              isActive("/projects") ? "bg-blue-700 text-white" : isDarkMode ? "text-white" : "text-black"
             }`}
             onClick={() => setMobileMenuOpen(false)}
           >
-            Portfolio
+            Projects
           </Link>
           <a
             href="/resume.pdf"
